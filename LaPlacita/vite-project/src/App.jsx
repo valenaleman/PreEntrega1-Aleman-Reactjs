@@ -1,34 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
 function App() {
-  const [count, setCount] = useState(0)
-
+  const products = [
+    { id: 1, name: 'Babysec - Ultrasec', price: 3200, content: 60 },
+    { id: 2, name: 'Pampers - Premium care, piel delicada', price: 5900, content: 58},
+    { id: 3, name: 'Pampers - Premium care, recién nacido hipoalergénico', price: 2420, content: 36},
+  ]
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>La placita - Pañalera</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <h1>Productos de nuestra pañalera</h1>
+    <ol>
+      {products.map(product => {
+        return (
+          <li key={product.id}>
+            {product.name} - ${product.price} - {product.content}
+          </li>
+        )
+      })}
+    </ol>
+    <h1>Productos con mayor cantidad de pañales</h1>
+    <ul>
+      {products.filter(product => product.content >50).map(product => {
+        return(
+          <li key={product.id}>
+            {product.name} - {product.price} - {product.content}
+          </li>
+        )
+        })}
+    </ul>
+    </div>
   )
 }
 
